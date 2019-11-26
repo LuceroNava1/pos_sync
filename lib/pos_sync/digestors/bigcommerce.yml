@@ -1,0 +1,34 @@
+---
+:product:
+  fields:
+    id: id
+    type: type
+    name: name
+    description: description
+    sku: sku
+    image_url: image_url
+    price: price
+    inventory_level: inventory_level
+    inventory_tracking: inventory_tracking
+    categories: categories
+    variants: variants
+    images: images
+    options: options
+  #after_create:
+    #- binding.pry
+
+:variant:
+  fields:
+    id: id
+    product_id: product_id
+    sku: sku
+    price: price
+    image_url: image_url
+    upc: upc
+    inventory_level: inventory_level
+    option_values: option_values
+
+:category:
+  fields:
+    id: id
+    name: name

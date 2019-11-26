@@ -1,0 +1,51 @@
+---
+:product:
+  fields:
+    id: id
+    name: item_data.name
+    description: item_data.description
+    image_url: _image.image_data.url
+    categories: item_data.category_id
+    #inventory_level:
+    variants: VARIANT!.item_data.variations
+  joins:
+    _image: IMAGE!.id<-image_id
+  after_create:
+    - self[:price] = self[:variants].first[:price] if self[:variants].size == 1
+    - self[:sku] = self[:variants].first[:sku] if self[:variants].size == 1 && self[:variants].first[:option_values].empty?
+
+:variant:
+  fields:
+    id: id
+    product_id: item_variation_data.item_id
+    name: item_variation_data.name
+    sku: item_variation_data.sku
+    sort_order: item_variation_data.ordinal
+    price: item_variation_data.price_money.amount
+    inventory_level: _inventory.quantity
+  joins:
+    _inventory: INVENTORY!.catalog_object_id<-id
+  after_create:
+    - self[:option_values] = []
+    - 'self[:option_values] << { label: self[:name], option_display_name: "Default" } unless self[:name] == "Regular"'
+    - self.delete(:name)
+    - self[:price] = (self[:price] / 100.0)
+    - "self[:price] = self[:price].to_i == self[:price] ? self[:price].to_i : self[:price]"
+    - self[:inventory_level] = self[:inventory_level].to_i unless self[:inventory_level].nil?
+
+:category:
+  fields:
+    id: id
+    name: category_data.name
+  joins:
+
+:inventory:
+  fields:
+    variant_id: catalog_object_id
+    quantity: quantity
+  filters:
+    state: == 'IN_STOCK'
+
+:image:
+  fields:
+  joins:

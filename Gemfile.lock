@@ -1,0 +1,53 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    awesome_print (1.8.0)
+    bigcommerce (1.0.1)
+      faraday (~> 0.11)
+      faraday_middleware (~> 0.11)
+      hashie (~> 3.4)
+      jwt (~> 1.5.4)
+    byebug (11.0.1)
+    certifi (2018.01.18)
+    coderay (1.1.2)
+    dotenv (2.7.5)
+    faraday (0.17.0)
+      multipart-post (>= 1.2, < 3)
+    faraday-http-cache (2.0.0)
+      faraday (~> 0.8)
+    faraday_middleware (0.13.1)
+      faraday (>= 0.7.4, < 1.0)
+    hashie (3.6.0)
+    jwt (1.5.6)
+    little-plugger (1.1.4)
+    logging (2.2.2)
+      little-plugger (~> 1.1)
+      multi_json (~> 1.10)
+    method_source (0.9.2)
+    multi_json (1.14.1)
+    multipart-post (2.1.1)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.7.0)
+      byebug (~> 11.0)
+      pry (~> 0.10)
+    square.rb (3.20191023.0)
+      certifi (~> 2018.1)
+      faraday (~> 0.15)
+      faraday-http-cache (~> 2.0)
+      faraday_middleware (~> 0.13)
+      logging (~> 2.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  awesome_print
+  bigcommerce (~> 1.0)
+  dotenv
+  pry-byebug
+  square.rb
+
+BUNDLED WITH
+   1.17.3
